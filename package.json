@@ -1,6 +1,6 @@
 {
-  "name": "react-media-player",
-  "version": "0.0.2",
+  "name": "@bragaru-i/react-media-player",
+  "version": "0.0.3",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
