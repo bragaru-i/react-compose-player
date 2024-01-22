@@ -1,5 +1,5 @@
 {
-  "name": "@bragaru-i/react-media-player",
+  "name": "react-compose-player",
   "version": "0.0.3",
   "type": "module",
   "main": "dist/main.js",
@@ -9,12 +9,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bragaru-i/react-media-player.git"
+    "url": "git+https://github.com/bragaru-i/react-compose-player.git"
   },
   "bugs": {
-    "url": "https://github.com/bragaru-i/react-media-player/issues"
+    "url": "https://github.com/bragaru-i/react-compose-player/issues"
   },
-  "homepage": "https://github.com/bragaru-i/react-media-player#readme",
+  "homepage": "https://github.com/bragaru-i/react-compose-player#readme",
   "dependencies": {
     "clsx": "^2.0.0",
     "mitt": "^3.0.1",
@@ -39,6 +39,7 @@
     "zustand": "^4.4.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.10",
     "@storybook/addon-interactions": "^7.5.1",
     "@storybook/addon-links": "^7.5.1",
     "@storybook/addon-onboarding": "^1.0.8",
