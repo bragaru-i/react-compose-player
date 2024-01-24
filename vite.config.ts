@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { UserConfig, defineConfig } from 'vite';
 import { extname, relative, resolve } from 'path';
 import { fileURLToPath } from 'node:url';
 import { glob } from 'glob';
@@ -7,6 +7,9 @@ import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
+  test: {
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.storybook'],
+  },
   plugins: [react(), libInjectCss(), dts({ include: ['lib'] })],
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, 'lib') }],
@@ -36,4 +39,4 @@ export default defineConfig({
       },
     },
   },
-});
+} as UserConfig);

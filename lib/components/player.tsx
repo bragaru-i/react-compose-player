@@ -12,17 +12,24 @@ const PROGRESS_TIMEOUT = 50;
 
 export const Player: FC<PlayerProps> = memo(({ className, url }) => {
   const mediaStore = useMediaStore();
-  const [mediaElRef, setIsReady, setCurrentTime, isReady, isPlaying] =
-    mediaStore(
-      state => [
-        state.mediaElRef,
-        state.setIsReady,
-        state.setCurrentTime,
-        state.isReady,
-        state.isPlaying,
-      ],
-      shallow,
-    );
+  const [
+    mediaElRef,
+    setIsReady,
+    setCurrentTime,
+    isReady,
+    isPlaying,
+    setDuration,
+  ] = mediaStore(
+    state => [
+      state.mediaElRef,
+      state.setIsReady,
+      state.setCurrentTime,
+      state.isReady,
+      state.isPlaying,
+      state.setDuration,
+    ],
+    shallow,
+  );
 
   // ATM we say that player is ready when it's Player Component is mounted
   useEffect(() => {
@@ -35,6 +42,7 @@ export const Player: FC<PlayerProps> = memo(({ className, url }) => {
     return isReady && isPlaying && Boolean(mediaElRef.current);
   }, [isPlaying, isReady, mediaElRef]);
 
+  // Get current time on a progress interval
   useEffect(() => {
     if (!isReadyToProgress) {
       return;
@@ -48,6 +56,16 @@ export const Player: FC<PlayerProps> = memo(({ className, url }) => {
 
     return () => clearInterval(progressTimeout);
   }, [isReadyToProgress, mediaElRef, setCurrentTime]);
+
+  // Get duration after loading metadata
+  useEffect(() => {
+    mediaElRef.current?.addEventListener('loadedmetadata', () => {
+      const duration = mediaElRef.current?.duration;
+      if (duration) {
+        setDuration(duration);
+      }
+    });
+  }, [isReady, mediaElRef, setDuration]);
 
   return (
     // disable controls
