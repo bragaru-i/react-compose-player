@@ -4,13 +4,12 @@ import { fileURLToPath } from 'node:url';
 import { glob } from 'glob';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
   test: {
     exclude: ['**/node_modules/**', '**/dist/**', '**/.storybook'],
   },
-  plugins: [react(), libInjectCss(), dts({ include: ['lib'] })],
+  plugins: [react(), dts({ include: ['lib'] })],
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, 'lib') }],
   },
