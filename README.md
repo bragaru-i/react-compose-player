@@ -10,6 +10,10 @@
 Goal of this repo is to create a new react media player that will be a composite "lego" player
 and consumer can use any piece of it, regarding to its own needs and saving by its own performance
 
+## Documentation
+
+!TODO
+
 ### TODO
 
 - [x] Support for media files:

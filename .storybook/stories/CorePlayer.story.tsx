@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import { VIDEO_URL } from '../utils/constants';
 import { PlayToggleButton } from '../components/play-toggle-button';
-import { CorePlayerProps, CorePlayer } from '../../lib/main';
+import { CorePlayerProps, CorePlayer, CurrentTiming } from '../../lib/main';
 import { CurrentTime } from '../components/current-time';
 
 export const Primary: StoryFn<CorePlayerProps> = () => {
@@ -14,6 +14,7 @@ export const Primary: StoryFn<CorePlayerProps> = () => {
       <CorePlayer url={VIDEO_URL}>
         <PlayToggleButton />
         <CurrentTime />
+        <CurrentTiming />
       </CorePlayer>
       <button onClick={() => setCount(prev => prev + 1)}>Count: {count}</button>
     </>
