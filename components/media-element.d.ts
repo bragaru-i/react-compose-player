@@ -1,5 +1,5 @@
 import { FC } from 'react';
-export interface PlayerProps {
+export interface MediaElementProps {
     url: string;
     className?: string;
 }
@@ -7,4 +7,4 @@ export interface PlayerProps {
  * - mounts video/audio tag
  * - set media duration
  */
-export declare const Player: FC<PlayerProps>;
+export declare const MediaElement: FC<MediaElementProps>;

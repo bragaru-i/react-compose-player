@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react';
-import { PlayerProps } from './player';
+import { MediaElementProps } from './media-element';
 interface Classes {
     video?: string;
     wrapper?: string;
 }
-export interface MediaContainerProps extends Pick<PlayerProps, 'url'> {
+export interface MediaContainerProps extends Pick<MediaElementProps, 'url'> {
     children?: ReactNode;
     classes?: Classes;
 }

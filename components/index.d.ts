@@ -1,4 +1,5 @@
-export * from './core-player';
-export * from './player';
+export * from './basic-player';
+export * from './media-element';
 export * from './media-container';
 export * from './current-timing';
+export * from './react-compose-player';
