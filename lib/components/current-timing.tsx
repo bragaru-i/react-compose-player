@@ -10,7 +10,9 @@ export interface CurrentTimingProps {
 
 const PROGRESS_TIMEOUT = 50;
 
-/** Component that adds current playing time to media player */
+/** Component that adds current playing time to media player.
+ * It is added to a separate component(not in basic), due to performance optimizations.
+ */
 export const CurrentTiming: FC<CurrentTimingProps> = memo(
   ({ progressInterval = PROGRESS_TIMEOUT, children }) => {
     const mediaStore = useMediaStore();

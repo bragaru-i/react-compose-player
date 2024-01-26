@@ -3,11 +3,15 @@ import { FC, ReactNode, memo } from 'react';
 import { MediaContainer, MediaContainerProps } from './media-container';
 import { MediaProvider } from './media-provider';
 
-export interface CorePlayerProps extends MediaContainerProps {
-  children: ReactNode;
+export interface BasicPlayerProps extends MediaContainerProps {
+  children?: ReactNode;
 }
 
-export const CorePlayer: FC<CorePlayerProps> = memo(
+/**
+ * Component that is basic for playing.
+ */
+
+export const BasicPlayer: FC<BasicPlayerProps> = memo(
   ({ children, classes, url }) => {
     return (
       <MediaProvider>

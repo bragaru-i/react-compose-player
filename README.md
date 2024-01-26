@@ -12,7 +12,11 @@ and consumer can use any piece of it, regarding to its own needs and saving by i
 
 ## Documentation
 
-!TODO
+Components:
+
+- **ReactComposePlayer** - a compose player that contains all lib features
+- **BasicPlayer** - basic components for playing. Mounts HTML tag for playing and MediaStore
+- **CurrentTiming** - components that adds current time of a played media
 
 ### TODO
 

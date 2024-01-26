@@ -3,26 +3,25 @@ import type { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import { VIDEO_URL } from '../utils/constants';
 import { PlayToggleButton } from '../components/play-toggle-button';
-import { CorePlayerProps, CorePlayer, CurrentTiming } from '../../lib/main';
+import { ReactComposePlayerProps, ReactComposePlayer } from '../../lib/main';
 import { CurrentTime } from '../components/current-time';
 
-export const Primary: StoryFn<CorePlayerProps> = () => {
+export const Primary: StoryFn<ReactComposePlayerProps> = () => {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <CorePlayer url={VIDEO_URL}>
+      <ReactComposePlayer url={VIDEO_URL}>
         <PlayToggleButton />
         <CurrentTime />
-        <CurrentTiming />
-      </CorePlayer>
+      </ReactComposePlayer>
       <button onClick={() => setCount(prev => prev + 1)}>Count: {count}</button>
     </>
   );
 };
 
-const meta: Meta<CorePlayerProps> = {
-  component: CorePlayer,
+const meta: Meta<ReactComposePlayerProps> = {
+  component: ReactComposePlayer,
   tags: ['autodocs'],
 };
 

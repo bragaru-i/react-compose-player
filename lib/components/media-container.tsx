@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { shallow } from 'zustand/shallow';
 
-import { Player, PlayerProps } from './player';
+import { MediaElement, MediaElementProps } from './media-element';
 
 import { useMediaStore, useTogglePlay } from '@/hooks';
 
@@ -10,7 +10,7 @@ interface Classes {
   wrapper?: string;
 }
 
-export interface MediaContainerProps extends Pick<PlayerProps, 'url'> {
+export interface MediaContainerProps extends Pick<MediaElementProps, 'url'> {
   children?: ReactNode;
   classes?: Classes;
 }
@@ -33,7 +33,7 @@ export const MediaContainer: FC<MediaContainerProps> = ({
       className={classes?.wrapper}
       onClick={playToggle}
     >
-      <Player className={classes?.video} url={url} />
+      <MediaElement className={classes?.video} url={url} />
       {children}
     </div>
   );
