@@ -4,23 +4,28 @@ on:
   push:
     branches:
       - main
-
+          
 jobs:
-  deploy-storybook:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
-      - run: npm ci --unsafe-perm
-      - run: npm test
-      - run: npm run predeploy
-      - run: git config --global user.email "bragaruion@gmail.com"
-      - run: git config --global user.name "Bragaru Ion"
-      - name: Deploy with gh-pages
-        run: |
-          git remote set-url origin https://git:${GHUB_TOKEN}@github.com/${GHUB_REPOSITORY}.git
-          npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHUB_TOKEN }}
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install  
+
+      - name: Build site
+        run: npm run predeploy  
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GHUB_TOKEN }}
+          publish_dir: ./gh-pages-dist  
