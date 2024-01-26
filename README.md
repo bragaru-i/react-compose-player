@@ -1,5 +1,10 @@
 # A File Media Player using HTML `<video />` tag
 
+[Live demo here(Storybook)](https://bragaru-i.github.io/react-compose-player)
+
+~ This is a another media player in react, but with a composition over inheritance pattern.  
+~ Still in dev mode
+
 ## Goal
 
 Goal of this repo is to create a new react media player that will be a composite "lego" player
@@ -18,9 +23,9 @@ and consumer can use any piece of it, regarding to its own needs and saving by i
 - [ ] Create media store on a composite level
   - [x] Create a state with `zustand`
   - [ ] Emit HTMLMedia events into new created media store
-- [ ] Add tests (vitest)
-- [ ] Create first version and register it to `npm`
-  - [ ]  Add automatization (Github Actions)
-    - [ ] Run tests
-    - [ ] Create storybook on `gihtub pages`
-    - [ ] Publish new version to `npm`
+- [x] Add tests (vitest)
+- [x] Create first version and register it to `npm`
+  - [x]  Add automatization (Github Actions)
+    - [x] Run tests
+    - [x] Create storybook on `gihtub pages`
+    - [x] Publish new version to `npm`
