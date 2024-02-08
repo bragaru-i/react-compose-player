@@ -18,6 +18,13 @@ Components:
 - **BasicPlayer** - basic components for playing. Mounts HTML tag for playing and MediaStore
 - **CurrentTiming** - components that adds current time of a played media
 
+Hooks:
+
+- **useBoolean** - tracks a boolean state modify
+- **useMediaListener** - event listeners for tracking MediaStore's events
+- **useMediaStore** - hook, that retrieves MediaStore from store context
+- **useTogglePlay** - toggle play/pause depending on playing status
+
 ### TODO
 
 - [x] Support for media files:

@@ -1,20 +1,19 @@
-import { FC, ReactNode, memo, useEffect, useMemo } from 'react';
+import { FC, memo, useEffect, useMemo } from 'react';
 import { shallow } from 'zustand/shallow';
 
 import { useMediaStore } from '@/hooks';
 
 export interface CurrentTimingProps {
   progressInterval?: number;
-  children?: ReactNode;
 }
 
-const PROGRESS_TIMEOUT = 50;
+export const PROGRESS_TIMEOUT = 50;
 
 /** Component that adds current playing time to media player.
  * It is added to a separate component(not in basic), due to performance optimizations.
  */
 export const CurrentTiming: FC<CurrentTimingProps> = memo(
-  ({ progressInterval = PROGRESS_TIMEOUT, children }) => {
+  ({ progressInterval = PROGRESS_TIMEOUT }) => {
     const mediaStore = useMediaStore();
     const [mediaElRef, setCurrentTime, isReady, isPlaying] = mediaStore(
       state => [
@@ -37,6 +36,7 @@ export const CurrentTiming: FC<CurrentTimingProps> = memo(
       }
       const progressTimeout = setInterval(() => {
         const time = mediaElRef.current?.currentTime;
+
         if (time) {
           setCurrentTime(time);
         }
@@ -45,6 +45,6 @@ export const CurrentTiming: FC<CurrentTimingProps> = memo(
       return () => clearInterval(progressTimeout);
     }, [isReadyToProgress, mediaElRef, progressInterval, setCurrentTime]);
 
-    return <>{children}</>;
+    return null;
   },
 );

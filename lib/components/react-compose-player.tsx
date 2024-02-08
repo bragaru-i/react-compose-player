@@ -4,7 +4,7 @@ import { BasicPlayer, BasicPlayerProps } from './basic-player';
 
 import { CurrentTiming, CurrentTimingProps } from '.';
 export interface ReactComposePlayerProps extends BasicPlayerProps {
-  currentTimingProps?: CurrentTimingProps;
+  progressInterval?: CurrentTimingProps['progressInterval'];
 }
 
 /**
@@ -12,12 +12,12 @@ export interface ReactComposePlayerProps extends BasicPlayerProps {
  */
 export const ReactComposePlayer: FC<ReactComposePlayerProps> = ({
   children,
-  currentTimingProps,
+  progressInterval,
   ...restProps
 }) => {
   return (
     <BasicPlayer {...restProps}>
-      <CurrentTiming {...currentTimingProps} />
+      <CurrentTiming progressInterval={progressInterval} />
       {children}
     </BasicPlayer>
   );

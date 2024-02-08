@@ -85,6 +85,9 @@ export const createSettersSlice: StateCreator<
       time = Math.min(state.duration, Math.max(0, time));
       state.emitter.emit('seeked', { diffMs: time });
       mediaEl.currentTime = time;
+      if (mediaEl.buffered.end(0) > time) {
+        mediaEl.preload = 'metadata';
+      }
       state.emitter.emit('timeupdate', {
         seconds: time,
         duration: state.duration,

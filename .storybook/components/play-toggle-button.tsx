@@ -1,31 +1,15 @@
 import { FC, memo } from 'react';
 import React from 'react';
-import { shallow } from 'zustand/shallow';
-import { useMediaStore } from '../../lib/hooks/use-media-store';
+import { useTogglePlay, useMediaStore } from '../../lib/hooks/';
 
 interface PlayToggleButtonProps {}
 
 export const PlayToggleButton: FC<PlayToggleButtonProps> = memo(() => {
+  const togglePlay = useTogglePlay();
   const mediaStore = useMediaStore();
+  const isPlaying = mediaStore(state => state.isPlaying);
 
-  const [play, pause, isPlaying] = mediaStore(
-    state => [state.play, state.pause, state.isPlaying],
-    shallow,
-  );
+  const renderButtonText = () => (isPlaying ? 'Pause' : 'Play');
 
-  const handleToggleClick = () => {
-    if (isPlaying) {
-      return pause();
-    }
-    return play();
-  };
-
-  const renderButtonText = () => {
-    if (isPlaying) {
-      return 'Pause';
-    }
-    return 'Play';
-  };
-
-  return <button onClick={handleToggleClick}>{renderButtonText()}</button>;
+  return <button onClick={togglePlay}>{renderButtonText()}</button>;
 });

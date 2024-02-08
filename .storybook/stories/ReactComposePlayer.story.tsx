@@ -1,28 +1,63 @@
-import type { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { VIDEO_URL } from '../utils/constants';
 import { PlayToggleButton } from '../components/play-toggle-button';
-import { ReactComposePlayerProps, ReactComposePlayer } from '../../lib/main';
+import {
+  ReactComposePlayerProps,
+  ReactComposePlayer,
+  PROGRESS_TIMEOUT,
+} from '../../lib/main';
 import { CurrentTime } from '../components/current-time';
+import { ProgressBar } from '../components/progress-bar';
 
-export const Primary: StoryFn<ReactComposePlayerProps> = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <ReactComposePlayer url={VIDEO_URL}>
-        <PlayToggleButton />
-        <CurrentTime />
-      </ReactComposePlayer>
-      <button onClick={() => setCount(prev => prev + 1)}>Count: {count}</button>
-    </>
-  );
-};
+import './ReactComposePlayer.styles.css';
 
 const meta: Meta<ReactComposePlayerProps> = {
   component: ReactComposePlayer,
-  tags: ['autodocs'],
+  render: ({ progressInterval, url }) => (
+    <ReactComposePlayer
+      url={url}
+      classes={{ wrapper: 'video-wrapper', video: 'video' }}
+      progressInterval={progressInterval}
+    >
+      <div
+        className="controls"
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
+        <CurrentTime className="current-time" />
+        <PlayToggleButton />
+        <ProgressBar />
+      </div>
+    </ReactComposePlayer>
+  ),
 };
 
+type Story = StoryObj<ReactComposePlayerProps>;
 export default meta;
+
+export const Basic: Story = {
+  args: {
+    progressInterval: PROGRESS_TIMEOUT,
+    url: VIDEO_URL,
+  },
+  argTypes: {
+    classes: {
+      name: 'classes',
+      description:
+        'Classes used for styling `<video>` tag and the `<div>` that wraps it',
+    },
+    progressInterval: {
+      name: 'progressInterval',
+      description:
+        'Re-rendering player every `progressInterval` seconds. Used to get timing for `<CurrentTiming />` component.',
+      defaultValue: { summary: PROGRESS_TIMEOUT },
+    },
+    url: { name: 'url', description: 'URL for the media to be played.' },
+  },
+  parameters: {
+    controls: { expanded: true },
+  },
+};
